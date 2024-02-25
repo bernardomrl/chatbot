@@ -1,7 +1,9 @@
+import { Chat } from '@/components/Chat';
+
 export default function Page() {
   return (
-    <h1 className="font-sans text-3xl font-bold text-black">
-      Next.js Template
-    </h1>
+    <div className="flex min-h-screen items-center justify-center bg-slate-100">
+      <Chat />
+    </div>
   );
 }
