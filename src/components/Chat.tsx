@@ -1,5 +1,6 @@
 'use client';
 
+import Link from 'next/link';
 import ReactMarkdown from 'react-markdown';
 
 import { Avatar, AvatarFallback, AvatarImage } from './ui/avatar';
@@ -23,10 +24,11 @@ export function Chat() {
   });
 
   return (
-    <Card className="w-full h-[calc(100vh-1rem)] flex flex-col justify-between items-start max-w-lg rounded-xl bg-white m-2">
+    <Card className="w-full h-[calc(100vh-1rem)] flex flex-col justify-between items-start max-w-lg rounded-xl bg-white overflow-hidden m-2">
+      <div>
       <CardHeader>
         <CardTitle className="flex items-center justify-between">
-          bernardomrl
+          <Link href="https://github.com/bernardomrl" target='_blank' className="hover:opacity-50 transition-opacity">bernardomrl</Link>
           <span className="rounded-full bg-black px-4 py-[2px] text-sm font-bold text-white opacity-75">
             beta
           </span>
@@ -37,12 +39,12 @@ export function Chat() {
         </CardDescription>
       </CardHeader>
       <CardContent>
-        <ScrollArea className="w-full overflow-y-auto max-h-[calc(100vh-25%)] flex flex-col justify-start items-start pr-4">
+        <ScrollArea className="w-full overflow-y-auto overflow-hidden max-h-[calc(100vh-14rem)] h-full flex flex-col justify-start items-start pr-4">
           {messages.map((message) => {
             return (
               <div
                 key={message.id}
-                className="mb-8 flex gap-3 text-sm text-slate-600"
+                className={`flex gap-3 mb-4 text-sm text-slate-600 justify-self-start p-4 rounded-xl ${message.role === 'user' ? 'bg-gray-200' : 'bg-gray-200/50'}`}
               >
                 {message.role === 'user' && (
                   <Avatar>
@@ -58,7 +60,7 @@ export function Chat() {
                 )}
                 <p className="leading-relaxed">
                   <span className="block font-bold text-slate-700">
-                    {message.role === 'user' ? 'Visitante' : 'Bernardo'}:
+                    {message.role === 'user' ? 'Visitante' : 'Bernardo'}
                   </span>
                   <ReactMarkdown className="message">
                     {message.content}
@@ -69,6 +71,7 @@ export function Chat() {
           })}
         </ScrollArea>
       </CardContent>
+      </div>
        <CardFooter className="w-full">
         <form className="flex w-full justify-between gap-2 items-center" onSubmit={handleSubmit}>
           <Input
