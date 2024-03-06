@@ -23,7 +23,7 @@ export function Chat() {
   });
 
   return (
-    <Card className="w-[440px] rounded-xl bg-white">
+    <Card className="w-full h-[calc(100vh-1rem)] flex flex-col justify-between items-start max-w-lg rounded-xl bg-white m-2">
       <CardHeader>
         <CardTitle className="flex items-center justify-between">
           bernardomrl
@@ -37,7 +37,7 @@ export function Chat() {
         </CardDescription>
       </CardHeader>
       <CardContent>
-        <ScrollArea className="h-[600px] w-full overflow-y-auto pr-4">
+        <ScrollArea className="w-full overflow-y-auto max-h-[calc(100vh-25%)] flex flex-col justify-start items-start pr-4">
           {messages.map((message) => {
             return (
               <div
@@ -69,8 +69,8 @@ export function Chat() {
           })}
         </ScrollArea>
       </CardContent>
-      <CardFooter>
-        <form className="flex w-full gap-2" onSubmit={handleSubmit}>
+       <CardFooter className="w-full">
+        <form className="flex w-full justify-between gap-2 items-center" onSubmit={handleSubmit}>
           <Input
             placeholder="Quantos anos você tem? Onde estuda?"
             value={input}
